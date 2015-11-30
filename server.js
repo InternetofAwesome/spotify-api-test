@@ -12,17 +12,11 @@ app.use(express.static('client')); //serves up the client dir
 
 var api_key = ''
 
-app.get('/key', function(req, res){
-  console.log(JSON.stringify(req.query.hash));
-  res.send('key request: ' + JSON.stringify(req.query.hash) )
-});
-
-app.put('/key', upload.array(), function(req, res, next){
-  console.log('body: ' + req.body.hash)
-  console.log(req.body.token);
+app.put('/key', function(req, res, next){
+  console.log(req.body);
   api_key = req.body.token
   // res.send('api key: ' + api_key)
-  request({url: "https://api.spotify.com/v1/users/voltaicsca/playlists", headers: {"Authorization": "Bearer " + api_key}}, function(error, response, body) {
+  request({url: "https://api.spotify.com/v1/users/maximumtunage/playlists", headers: {"Authorization": "Bearer " + api_key}}, function(error, response, body) {
     console.log("data from spotify:")
     console.log(body);
     res.send(body);

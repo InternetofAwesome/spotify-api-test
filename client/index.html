@@ -16,10 +16,16 @@
     <script>
     if(window.location.hash)
       console.log("Hash is: " + window.location.hash);
-      var lochash    = window.location.hash.substr(1),
-      token = lochash.substr(window.location.hash.indexOf('access_token='))
-                    .split('&')[0]
-                    .split('=')[1]
+      // var lochash    = window.location.hash.substr(1),
+      
+      
+      token = window.location.hash.substr(window.location.hash.indexOf('access_token='))
+      console.log('step 1 =' + token)
+      token = token.split('&')[0]   
+      console.log('step 2 =' + token)
+      token = token.split('=')[1]
+      console.log('step 3 =' + token)
+      
       console.log('token: ' + token)
       $.ajax({type: 'PUT', contentType: "application/json", url: 'key', data: JSON.stringify({"token": token}), success: function(result){
         document.body.innerHTML = result;
